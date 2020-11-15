@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color="secondary"  >
+    
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Lista de Produtos</ion-title>
+    <ion-buttons start>
+
+      <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+        <ion-icon style="color:#b7f1fc" name="basket"></ion-icon>
+        <span style="color:#ffffff"> {{contador}} - {{calculo | currency: 'BRL'}}</span>
+      </button>
+    </ion-buttons>
+    
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+    <ion-list style="margin-top: 20px;">
+      <ion-item *ngFor="let item Of produtos">
+        <ion-thumbnail item-start>
+          <img src="../../assets/imgs/sem-foto.jpg">
+        </ion-thumbnail>
+        <h2>{{item.nome}}</h2>
+        <p style="color: rgb(12, 245, 233);"> R$ {{item.valor | currency: 'BRL'}}</p>
+    
+        
+        <ion-icon class="nobreakline" name="remove-circle"  color="secondary" (click)="remover(item.id,
+                                                                                               item.qtd,
+                                                                                               item.valor,
+                                                                                               item.total)"></ion-icon>
+        <p  class="nobreakline" >{{item.qtd}}</p>
+        
+      <ion-icon name="add-circle" color="secondary" (click)="acresentar(item.id, 
+                                                                        item.qtd,
+                                                                        item.valor,
+                                                                        item.total)"></ion-icon>
+        
+        <button ion-button clear item-end> Adiconar</button>
+      </ion-item>
+    </ion-list>
+  
+  
+
+</ion-content>
